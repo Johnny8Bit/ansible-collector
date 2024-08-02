@@ -1,0 +1,5 @@
+---
+devices:
+  hosts:
+    DEVICE1:
+      ansible_host: x.x.x.x
