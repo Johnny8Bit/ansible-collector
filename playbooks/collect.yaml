@@ -1,1 +1,23 @@
+---
 
+- name: Collect Output
+  hosts: wlc
+  gather_facts: false
+  
+  vars:
+    cli: show version
+    cli_name: sh ver
+    logs: /home/user/logs/
+
+  tasks:
+  
+  - name: Do cli
+    cisco.ios.ios_command:
+      commands: "{{ cli }}"
+    register: output
+
+  - name: Save output
+    copy:
+      content: "{{ cli }}\n{{ output.stdout[0] }}"
+      dest: "{{ logs }}{{ inventory_hostname }}-{{ cli_name }}.txt"
+      # -{{ now(fmt='%Y-%m-%d %H:%M:%S') }}.txt"
