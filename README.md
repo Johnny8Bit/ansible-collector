@@ -13,12 +13,12 @@ ansible-playbook /path_to_playbooks/collect.yaml --vault-id user@password_file
 
 ## Ansible Vault
 
-Create a password file containing a secret - this will be used for encryption of actual device credentials
-Use the ansible vault command below to encrypt the actual device credentials
+Create a password file containing a secret - this will be used for encryption of actual device credentials.
+
+Use the ansible vault command below to encrypt the actual device credentials using any username.
 ```
-ansible-vault encrypt_string --vault-password-file password_file 'actual_device_credential' --name 'ansible_variable_name'
+ansible-vault encrypt_string --vault-id user@password_file 'actual_device_credential' --name 'ansible_variable_name'
 ```
-In this repo the name of the password file is 'password', and it contains a sampe secret of also 'password'
 
 This process should be repeated for username, password, and enable password - by assigning the encrypted output to the ansible variables below:
 
@@ -26,13 +26,10 @@ This process should be repeated for username, password, and enable password - by
 - ansible_ssh_pass
 - ansible_become_password
 
-Paste the outut of the ansible vault command in the devices.yaml file in the /group_vars directory
+Paste the output of the ansible vault command in the devices.yaml file in the /group_vars directory
 
 ## ansible.cfg changes
-gathering=explicit
-
-inventory=/etc/ansible/hosts
-
-transport=ssh
-
-host_key_checking=False
+- gathering=explicit
+- inventory=/etc/ansible/hosts
+- transport=ssh
+- host_key_checking=False
