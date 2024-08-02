@@ -10,6 +10,12 @@ Not intended for configuration mode commands.
 ```
 ansible-playbook /path_to_playbooks/collect.yaml --vault-id user@password_file
 ```
+## Playbook
+
+The playbook takes three variables, update these as needed:
+- cli >> the actual Cisco command to run against the device
+- cli_name >> a short name for the command, used in the name of the output file
+- logs >> location to store output files
 
 ## Ansible Vault
 
